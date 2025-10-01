@@ -39,11 +39,11 @@ class PostsTable
                     ->limit(30)
                     ->sortable()
                     ->searchable(),
-                TextColumn::make("editor.name")
-                    ->label('Editor')
-                    ->limit(30)
-                    ->sortable()
-                    ->searchable(),
+                // TextColumn::make("editor.name")
+                //     ->label('Editor')
+                //     ->limit(30)
+                //     ->sortable()
+                //     ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
@@ -60,9 +60,9 @@ class PostsTable
             ])
 
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                // BulkActionGroup::make([
+                //     DeleteBulkAction::make(),
+                // ]),
             ])
             ->recordActions([
                 // EditAction::make(),

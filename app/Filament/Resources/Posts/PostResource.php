@@ -39,7 +39,7 @@ class PostResource extends Resource
             ->recordActions([
                 EditAction::make()
                     ->iconButton()
-                    ->color('info')
+                    ->color('success')
                     ->modalHeading('Edit Post')
                     ->modalSubmitActionLabel('Save Changes')
                     ->successNotification(
@@ -49,19 +49,25 @@ class PostResource extends Resource
                             ->body('The post has been updated successfully.')
                     ),
                 DeleteAction::make()
-                    ->iconButton()
+                    ->iconButton(),
+
 
             ])
             ->headerActions([
-                // CreateAction::make()
-                //     ->modalHeading('Create New Post')
-                //     ->modalSubmitActionLabel('Create Post')
-                //     ->successNotification(
-                //         Notification::make()
-                //             ->success()
-                //             ->title('Post created')
-                //             ->body('The post has been created successfully.')
-                //     ),
+                CreateAction::make()
+                    ->icon('heroicon-m-plus-circle')
+                    ->iconButton()
+                    ->size('xl') // Large icon button
+                    ->color('primary') //
+                    ->outlined() // Outline style
+                    ->modalHeading('Create New Post')
+                    ->modalSubmitActionLabel('Create Post')
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Post created')
+                            ->body('The post has been created successfully.')
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
