@@ -1,0 +1,12 @@
+.fi-body {
+    --fi-color-primary-500: #8b5cf6;
+    --fi-color-primary-600: #7c3aed;
+}
+
+.fi-sidebar {
+    background-color: #e7e7e7;
+}
+
+.fi-topbar {
+    background-color: #8dc7f6d8;
+}

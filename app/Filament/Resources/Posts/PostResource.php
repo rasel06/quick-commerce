@@ -9,6 +9,11 @@ use App\Filament\Resources\Posts\Schemas\PostForm;
 use App\Filament\Resources\Posts\Tables\PostsTable;
 use App\Models\Post;
 use BackedEnum;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\CreateAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -29,7 +34,44 @@ class PostResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return PostsTable::configure($table);
+        return PostsTable::configure($table)
+            ->recordActions([
+                EditAction::make()
+                    ->modalHeading('Edit Post')
+                    ->modalSubmitActionLabel('Save Changes')
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Post updated')
+                            ->body('The post has been updated successfully.')
+                    ),
+            ])
+            ->headerActions([
+                // CreateAction::make()
+                //     ->modalHeading('Create New Post')
+                //     ->modalSubmitActionLabel('Create Post')
+                //     ->successNotification(
+                //         Notification::make()
+                //             ->success()
+                //             ->title('Post created')
+                //             ->body('The post has been created successfully.')
+                //     ),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    // Bulk delete with confirmation
+                    DeleteBulkAction::make()
+                        ->requiresConfirmation()
+                        ->modalHeading('Delete selected posts')
+                        ->modalDescription('Are you sure you want to delete the selected posts? This action cannot be undone.')
+                        ->successNotification(
+                            Notification::make()
+                                ->success()
+                                ->title('Posts deleted')
+                                ->body('The selected posts have been deleted successfully.')
+                        ),
+                ]),
+            ]);
     }
 
     public static function getRelations(): array
@@ -43,8 +85,8 @@ class PostResource extends Resource
     {
         return [
             'index' => ListPosts::route('/'),
-            'create' => CreatePost::route('/create'),
-            'edit' => EditPost::route('/{record}/edit'),
+            // 'create' => CreatePost::route('/create'),
+            // 'edit' => EditPost::route('/{record}/edit'),
         ];
     }
 }

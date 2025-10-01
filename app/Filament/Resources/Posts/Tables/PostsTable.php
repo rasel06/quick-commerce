@@ -21,28 +21,28 @@ class PostsTable
                 // Display only first 50 characters of content
                 TextColumn::make('title')
                     ->label('Title')
+                    ->limit(20)
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('content')
                     ->label('Content')
-                    ->limit(50)
+                    ->limit(30)
                     ->sortable()
                     ->searchable(),
                 IconColumn::make('is_published')
                     ->boolean()
                     ->trueIcon(Heroicon::OutlinedCheckBadge)
                     ->falseIcon(Heroicon::OutlinedXMark),
-                // IconColumn::make('is_published')
-                //     ->label('Published')
-                //     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->since(),
                 TextColumn::make('updated_at')
                     ->label('Updated At')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->since(),
             ])
             ->filters([
                 //
