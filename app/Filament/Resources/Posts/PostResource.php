@@ -11,6 +11,7 @@ use App\Models\Post;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Notifications\Notification;
@@ -37,6 +38,7 @@ class PostResource extends Resource
         return PostsTable::configure($table)
             ->recordActions([
                 EditAction::make()
+                    ->iconButton()
                     ->modalHeading('Edit Post')
                     ->modalSubmitActionLabel('Save Changes')
                     ->successNotification(
@@ -45,6 +47,8 @@ class PostResource extends Resource
                             ->title('Post updated')
                             ->body('The post has been updated successfully.')
                     ),
+                DeleteAction::make()
+                    ->iconButton()
             ])
             ->headerActions([
                 // CreateAction::make()

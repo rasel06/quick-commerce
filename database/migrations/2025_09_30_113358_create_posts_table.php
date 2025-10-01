@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->boolean('is_published')->default(false);
+            $table->foreignId('created_by')->constrained('users');
+            $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
         });
     }

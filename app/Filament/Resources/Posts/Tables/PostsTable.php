@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Posts\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Support\Icons\Heroicon;
@@ -33,6 +34,16 @@ class PostsTable
                     ->boolean()
                     ->trueIcon(Heroicon::OutlinedCheckBadge)
                     ->falseIcon(Heroicon::OutlinedXMark),
+                TextColumn::make("creator.name")
+                    ->label('Creator')
+                    ->limit(30)
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make("editor.name")
+                    ->label('Editor')
+                    ->limit(30)
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
@@ -47,13 +58,16 @@ class PostsTable
             ->filters([
                 //
             ])
-            ->recordActions([
-                EditAction::make(),
-            ])
+
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
+            ])
+            ->recordActions([
+                // EditAction::make(),
+                // DeleteAction::make(),
             ]);
+
     }
 }

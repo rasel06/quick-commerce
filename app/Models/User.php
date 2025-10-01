@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,5 +45,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    /**
+     * Get the posts created by this user
+     */
+    public function createdPosts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'created_by');
+    }
+
+    /**
+     * Get the posts updated by this user
+     */
+    public function updatedPosts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'updated_by');
     }
 }

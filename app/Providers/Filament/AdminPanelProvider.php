@@ -57,8 +57,11 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            // ->css([
+            //     resource_path('css/filament/custom-stylesheet.css'),
+            // ])
             ->assets([
-                Css::make('custom-stylesheet', resource_path('css/filament/custom.css')),
+                Css::make('custom-stylesheet', resource_path('css/filament/custom-stylesheet.css')),
                 // Js::make('custom-script', resource_path('js/custom.js')),
             ]);
         // ->css([resource_path('css/filament/custom.css')]);
