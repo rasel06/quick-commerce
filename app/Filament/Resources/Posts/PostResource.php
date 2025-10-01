@@ -39,6 +39,7 @@ class PostResource extends Resource
             ->recordActions([
                 EditAction::make()
                     ->iconButton()
+                    ->color('info')
                     ->modalHeading('Edit Post')
                     ->modalSubmitActionLabel('Save Changes')
                     ->successNotification(
@@ -49,6 +50,7 @@ class PostResource extends Resource
                     ),
                 DeleteAction::make()
                     ->iconButton()
+
             ])
             ->headerActions([
                 // CreateAction::make()
