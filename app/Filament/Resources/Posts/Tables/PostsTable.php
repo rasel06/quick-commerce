@@ -8,6 +8,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -39,11 +40,19 @@ class PostsTable
                     ->limit(30)
                     ->sortable()
                     ->searchable(),
-                // TextColumn::make("editor.name")
-                //     ->label('Editor')
-                //     ->limit(30)
-                //     ->sortable()
-                //     ->searchable(),
+                TextColumn::make("editor.name")
+                    ->label('Editor')
+                    ->limit(30)
+                    ->sortable()
+                    ->searchable(),
+
+                // Stack::make([
+                //     TextColumn::make('phone')
+                //         ->icon('heroicon-m-phone'),
+                //     TextColumn::make('email')
+                //         ->icon('heroicon-m-envelope'),
+                // ]),
+
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
@@ -68,6 +77,5 @@ class PostsTable
                 // EditAction::make(),
                 // DeleteAction::make(),
             ]);
-
     }
 }

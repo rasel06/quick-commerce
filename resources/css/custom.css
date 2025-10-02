@@ -1,0 +1,24 @@
+/* Round cards, modals, dropdowns */
+.fi-card,
+.fi-modal-window,
+.fi-dropdown-panel {
+    @apply rounded-none;
+}
+
+/* Round input fields */
+.fi-input-wrp {
+    @apply rounded-none;
+}
+
+/* Round table cells (optional) */
+.fi-ta-cell {
+    @apply rounded-none;
+}
+
+.fi-topbar {
+    background-color: aqua;
+}
+
+.fi-sidebar-nav {
+    @apply bg-rose-900;
+}

@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\Posts\Pages\ListPosts;
+use App\Models\User;
+use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -63,11 +66,24 @@ class AdminPanelProvider extends PanelProvider
             // ])
             ->assets([
                 Css::make('custom-stylesheet', resource_path('css/filament/custom-stylesheet.css')),
+
                 // Js::make('custom-script', resource_path('js/custom.js')),
             ])
+            // ->css([resource_path('css/filament/custom.css')])
             ->unsavedChangesAlerts()
             ->databaseTransactions()
-            ->spa();
+            ->spa()
+            ->navigationGroups([
+                'Content',
+                'Settings',
+                'Analytics',
+            ])
+            ->userMenuItems([
+                Action::make('settings')
+                    ->url(fn(): string => ListPosts::getUrl())
+                    ->icon('heroicon-o-cog-6-tooth')
+            ]);
+
         // ->css([resource_path('css/filament/custom.css')]);
     }
 }

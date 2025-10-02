@@ -1,12 +1,22 @@
-.fi-body {
-    --fi-color-primary-500: #8b5cf6;
-    --fi-color-primary-600: #7c3aed;
+/* Compact layout */
+.fi-fo-component-ctn,
+.fi-ta-row,
+.fi-section,
+.fi-card {
+    @apply gap-2;
 }
 
-.fi-sidebar {
-    background-color: #e7e7e7;
+.fi-ta-content-ctn{
+     padding: 0px !important;
+    margin: 0px !important;
 }
 
-.fi-topbar {
-    background-color: #ff1180d8;
+.fi-ta-table,.fi-ta-cell {
+    /* @apply py-1.5; */
+    /* padding: 0px;
+    margin: 0px; */
+}
+
+.fi-modal-window {
+    @apply p-4;
 }
