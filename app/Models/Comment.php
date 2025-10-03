@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
+    use HasFactory;
 
-    protected $fillable = ['post_id','comment','commented_by','is_approved','approved_by'];
+    protected $fillable = ['post_id', 'comment', 'commented_by', 'is_approved', 'approved_by'];
 
 
     /**
@@ -28,7 +30,7 @@ class Comment extends Model
         // Set updated_by when updating an existing post
         static::updating(function ($comment) {
             if (Auth::check()) {
-                $comment->updated_by = Auth::id();
+                $comment->approved_by = Auth::id();
             }
         });
 
@@ -43,7 +45,7 @@ class Comment extends Model
 
 
 
-     /**
+    /**
      * Get the user who created this post
      */
     public function post(): BelongsTo
@@ -68,5 +70,11 @@ class Comment extends Model
         return $this->belongsTo(User::class, 'approved_by');
     }
 
-
+    /**
+     * Get the user who created this post
+     */
+    public function posts(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'post_id');
+    }
 }

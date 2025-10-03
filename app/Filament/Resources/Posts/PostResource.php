@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Posts;
 
+use App\Filament\Actions\CommentAction;
+use App\Filament\Actions\CreateRelatedRecordAction;
+use App\Filament\Actions\PostCommentAction;
 use App\Filament\Resources\Posts\Pages\CreatePost;
 use App\Filament\Resources\Posts\Pages\EditPost;
 use App\Filament\Resources\Posts\Pages\ListPosts;
@@ -16,12 +19,18 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\Width;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder as DbBuilder;
 
 class PostResource extends Resource
 {
@@ -47,10 +56,17 @@ class PostResource extends Resource
         return 1; // Lower = higher priority
     }
 
+    public static function getEloquentQuery(): DbBuilder
+    {
+        return parent::getEloquentQuery()->withCount('comments');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return PostForm::configure($schema);
     }
+
+
 
     public static function table(Table $table): Table
     {
@@ -60,6 +76,28 @@ class PostResource extends Resource
                     ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
+                    PostCommentAction::make('comments', 'comment'),
+                    CreateRelatedRecordAction::make(
+                        relationship: 'comments',
+                        formSchema: [
+                            TextInput::make('comment')
+                                ->required()
+                                ->maxLength(255),
+
+                            // Textarea::make('body')
+                            //     ->label('Comment')
+                            //     ->required()
+                            //     ->maxLength(1000)
+                            //     ->rows(3),
+                            // Select::make('status')
+                            //     ->options([
+                            //         'pending' => 'Pending',
+                            //         'approved' => 'Approved',
+                            //     ])
+                            //     ->default('pending'),
+                        ],
+                        submitLabel: 'Post Comment'
+                    ),
                 ]),
                 // EditAction::make()
                 //     ->iconButton()

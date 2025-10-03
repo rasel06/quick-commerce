@@ -31,20 +31,25 @@ class PostsTable
                     ->limit(30)
                     ->sortable()
                     ->searchable(),
+                TextColumn::make("comments_count")
+                    ->label('Comments')
+                    ->numeric()
+                    ->alignCenter(),
                 IconColumn::make('is_published')
                     ->boolean()
                     ->trueIcon(Heroicon::OutlinedCheckBadge)
-                    ->falseIcon(Heroicon::OutlinedXMark),
+                    ->falseIcon(Heroicon::OutlinedXMark)
+                    ->alignCenter(),
                 TextColumn::make("creator.name")
                     ->label('Creator')
                     ->limit(30)
                     ->sortable()
                     ->searchable(),
-                TextColumn::make("editor.name")
-                    ->label('Editor')
-                    ->limit(30)
-                    ->sortable()
-                    ->searchable(),
+                // TextColumn::make("editor.name")
+                //     ->label('Editor')
+                //     ->limit(30)
+                //     ->sortable()
+                //     ->searchable(),
 
                 // Stack::make([
                 //     TextColumn::make('phone')
@@ -57,12 +62,14 @@ class PostsTable
                     ->label('Created At')
                     ->dateTime()
                     ->sortable()
-                    ->since(),
+                    ->since()
+                    ->alignCenter(),
                 TextColumn::make('updated_at')
                     ->label('Updated At')
                     ->dateTime()
                     ->sortable()
-                    ->since(),
+                    ->since()
+                    ->alignCenter(),
             ])
             ->filters([
                 //
@@ -76,6 +83,7 @@ class PostsTable
             ->recordActions([
                 // EditAction::make(),
                 // DeleteAction::make(),
-            ]);
+            ])
+            ->recordUrl(null);
     }
 }
