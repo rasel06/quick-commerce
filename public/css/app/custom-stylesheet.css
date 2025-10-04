@@ -1,6 +1,5 @@
 /* Round cards, modals, dropdowns */
 
-
 .fi-card,
 .fi-modal-window,
 .fi-dropdown-panel {
@@ -18,15 +17,14 @@
 }
 
 .fi-topbar {
-    background-color:rgba(54, 130, 223, 0.779);
+    background-color: rgba(54, 130, 223, 0.779);
 }
 
 .fi-sidebar-nav {
     background-color: white;
     padding: 1rem;
-    border-right: 1px solid #E7E7E7;
+    border-right: 1px solid #e7e7e7;
     padding: 1rem !important;
-
 }
 
 .fi-ta-ctn {
@@ -34,29 +32,31 @@
     border-radius: 0px;
 }
 
-.fi-main-ctn{
+.fi-main-ctn {
     padding: 1rem;
     margin: 0px !important;
 }
 
-.fi-main{
-    background-color: rgb(214, 206, 206);
+.fi-main {
+    /* background-color: rgb(188, 188, 188); */
     padding: 1rem;
     margin: 0px !important;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .fi-resource-list-records-page {
-    background-color: rgb(57, 220, 122);
+    /* background-color: rgb(152, 223, 188); */
     padding: 0px !important;
     margin: 0px !important;
 }
 
 .fi-page {
-
     padding: 0px !important;
     margin: 0px !important;
 }
 
-
-.fi-page-header-main-ctn{
- row-gap: 0.5rem !important;
+.fi-page-header-main-ctn {
+    row-gap: 0.5rem !important;
+    padding: 0px !important;
+    margin: 0px !important;
 }
