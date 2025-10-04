@@ -24,6 +24,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Enums\Width;
+use Filament\FontProviders\GoogleFontProvider;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -34,9 +35,19 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            // ->colors([
+            //     'primary' => Color::Rose,
+            // ])
+            // ->font('Roboto', provider: GoogleFontProvider::class)
             ->colors([
-                'primary' => Color::Rose,
+                'danger' => Color::Rose,
+                'gray' => Color::Gray,
+                'info' => Color::Blue,
+                'primary' => Color::Indigo,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -61,15 +72,10 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            // ->css([
-            //     resource_path('css/filament/custom-stylesheet.css'),
-            // ])
             ->assets([
-                Css::make('custom-stylesheet', resource_path('css/filament/custom-stylesheet.css')),
-
+                Css::make('custom-stylesheet', resource_path('css/custom.css')),
                 // Js::make('custom-script', resource_path('js/custom.js')),
             ])
-            // ->css([resource_path('css/filament/custom.css')])
             ->unsavedChangesAlerts()
             ->databaseTransactions()
             ->spa()

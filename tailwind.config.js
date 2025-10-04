@@ -1,5 +1,4 @@
-// tailwind.config.js
-import preset from './vendor/filament/support/tailwind.config.preset'
+import preset from './vendor/filament/filament/tailwind.config.preset'
 
 export default {
     presets: [preset],
@@ -10,24 +9,38 @@ export default {
     ],
     theme: {
         extend: {
+            borderRadius: {
+                'md': 'none',
+                'lg': 'none',
+                'xl': 'none'
+
+            },
+            // 🔥 Redefine ALL spacing (margin, padding, gap, etc.)
             spacing: {
-                // Redefine default spacing scale
-                '0': '0px',
-                '1': '0.25rem',
-                '2': '0.5rem',
-                '3': '0.75rem',
-                '4': '1rem',
-                '5': '1.25rem',
-                '6': '1.5rem',
-                // etc.
-            },
-            padding: {
-                card: '1rem',
-                modal: '1.5rem',
-            },
-            margin: {
-                row: '0.5rem',
+                // Default Tailwind uses 0.25rem = 4px increments
+                // Let's redefine with 8px base (like many design systems)
+                0: '0px',
+                1: '8px',      // was 4px
+                2: '16px',     // was 8px
+                3: '24px',     // was 12px
+                4: '32px',     // was 16px
+                5: '40px',     // was 20px
+                6: '48px',
+                7: '56px',
+                8: '64px',
+                9: '72px',
+                10: '80px',
+                12: '96px',
+                16: '128px',
+                20: '160px',
+                24: '192px',
+                32: '256px',
+                40: '320px',
+                48: '384px',
+                56: '448px',
+                64: '512px',
             }
-        }
-    }
+        },
+    },
+    plugins: [],
 }

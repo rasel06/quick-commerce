@@ -1,4 +1,6 @@
 /* Round cards, modals, dropdowns */
+@import 'tailwindcss';
+
 .fi-card,
 .fi-modal-window,
 .fi-dropdown-panel {
@@ -16,7 +18,7 @@
 }
 
 .fi-topbar {
-    background-color: aqua;
+    @apply bg-rose-500;
 }
 
 .fi-sidebar-nav {
