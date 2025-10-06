@@ -46,6 +46,31 @@ class PostResource extends Resource
     //protected static ?string $recordTitleAttribute = 'title';
     protected ?bool $hasDatabaseTransactions = true;
 
+
+
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->can('catalog.manage');
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->can('catalog.manage');
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->can('catalog.manage');
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->can('catalog.manage');
+    }
+
+
+
     public static function getNavigationGroup(): ?string
     {
         return 'Content';

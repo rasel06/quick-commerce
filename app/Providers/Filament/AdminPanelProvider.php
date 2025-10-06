@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Resources\Posts\Pages\ListPosts;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Http\Middleware\Authenticate;
@@ -69,6 +70,9 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->plugins([
+                FilamentShieldPlugin::make(),
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ])
@@ -88,7 +92,8 @@ class AdminPanelProvider extends PanelProvider
                 Action::make('settings')
                     ->url(fn(): string => ListPosts::getUrl())
                     ->icon('heroicon-o-cog-6-tooth')
-            ]);
+            ])
+            ->plugins([]);
 
         // ->css([resource_path('css/filament/custom.css')]);
     }
