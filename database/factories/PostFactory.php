@@ -22,8 +22,8 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(10),
             'content' => $this->faker->sentence(50),
             'is_published' => rand(0, 1),
-            'created_by' => rand(1, 3),
-            'updated_by' => rand(2,3)
+            'created_by' => rand(1, 2),
+            'updated_by' => rand(1, 2)
         ];
     }
 }
