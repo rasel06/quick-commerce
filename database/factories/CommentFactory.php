@@ -20,7 +20,7 @@ class CommentFactory extends Factory
         // protected $fillable = ['post_id', 'comment', 'commented_by', 'is_approved', 'approved_by'];
 
         return [
-            'post_id' => rand(1, 20),
+            'post_id' => rand(1, 500),
             'comment' => $this->faker->sentence(10),
             'commented_by' => rand(1, 2),
 
